@@ -3,5 +3,5 @@ package com.estudos.spring.repository;
 import com.estudos.spring.model.Produto;
 import org.springframework.data.repository.CrudRepository;
 
-public interface ProdutoRepository extends CrudRepository<Long, Produto> {
+public interface ProdutoRepository extends CrudRepository<Produto, Long> {
 }
