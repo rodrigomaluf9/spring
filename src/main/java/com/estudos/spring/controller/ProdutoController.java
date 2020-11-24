@@ -20,7 +20,7 @@ public class ProdutoController {
     @GetMapping
     public ProdutoDTO produto() {
 
-        return new ProdutoDTO();
+        return new ProdutoDTO();//produtoRepository.findAll();
     }
 
     @PostMapping
