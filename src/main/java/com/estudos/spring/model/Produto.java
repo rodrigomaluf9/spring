@@ -4,13 +4,16 @@ import lombok.*;
 
 import javax.persistence.*;
 
+@Builder
 @Data
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = "nome", name = "uniqueNomeConstraint")}
+)
 public class Produto {
 
     @Column
