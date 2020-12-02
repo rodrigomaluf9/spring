@@ -3,6 +3,7 @@ package com.estudos.spring.controller;
 import com.estudos.spring.dto.ProdutoDTO;
 import com.estudos.spring.model.Produto;
 import com.estudos.spring.repository.ProdutoRepository;
+import com.estudos.spring.service.ProdutoService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 public class ProdutoController {
 
     @Autowired
-    private ProdutoRepository produtoRepository;
+    private ProdutoService produtoService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -25,7 +26,7 @@ public class ProdutoController {
     @GetMapping
     public List<ProdutoDTO> produto() {
 
-        Iterable<Produto> produtos = produtoRepository.findAll();
+        Iterable<Produto> produtos = produtoService.findAll();
         Type listType = new TypeToken<List<ProdutoDTO>>() {}.getType();
         return new ModelMapper().map(produtos, listType);
     }
@@ -33,7 +34,7 @@ public class ProdutoController {
     @PostMapping
     public ProdutoDTO produto(@RequestBody ProdutoDTO produtoDTO) {
 
-        return convertToDto(produtoRepository.save(convertToEntity(produtoDTO)));
+        return convertToDto(produtoService.save(convertToEntity(produtoDTO)));
     }
 
     private ProdutoDTO convertToDto(Produto produto) {
